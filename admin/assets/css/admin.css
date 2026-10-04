@@ -203,6 +203,7 @@
 .rm-donate-button {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
     gap: 8px;
     padding: 12px 30px;
     border: none;
@@ -212,6 +213,7 @@
     font-size: 15px;
     font-weight: 700;
     cursor: pointer;
+    text-decoration: none;
     transition: transform 0.15s ease, box-shadow 0.15s ease;
     box-shadow: 0 3px 8px rgba(190, 140, 30, 0.35);
 }
@@ -219,6 +221,13 @@
 .rm-donate-button:hover {
     transform: translateY(-2px) scale(1.02);
     box-shadow: 0 6px 14px rgba(190, 140, 30, 0.45);
+    color: #3b2b00;
+}
+
+.rm-donate-link-note {
+    margin-top: 14px;
+    font-size: 12px;
+    color: #6b7280;
 }
 
 .rm-donate-button:active {

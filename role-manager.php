@@ -3,7 +3,7 @@
  * Plugin Name: Role Manager
  * Description: Gestión modular y escalable de roles en WordPress: CRUD de roles y usuarios, permisos de acceso por página, multi-rol por usuario, campos personalizados de usuario y donaciones vía PayPal.
  * Version:     0.2.0
- * Author:      Icontec
+ * Author:      Anderson Chila 
  * Text Domain: role-manager
  * Domain Path: /languages
  */

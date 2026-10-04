@@ -262,90 +262,25 @@ class RM_Donations_Module extends RM_Module {
     public function render() {
         $this->check_permissions();
 
-        $settings   = self::get_settings();
-        $configured = '' !== $settings['client_id'] && '' !== $settings['client_secret'];
-
         echo '<div class="wrap rm-wrap rm-donations">';
         echo '<h1>' . esc_html( $this->get_page_title() ) . '</h1>';
 
         $this->maybe_render_notice();
 
-        // --- Tarjeta de donación ---
         echo '<div class="rm-card rm-donate-card">';
         echo '<div class="rm-coffee-emoji" aria-hidden="true">☕</div>';
         echo '<h2>' . esc_html__( '¿Te resulta útil Role Manager?', 'role-manager' ) . '</h2>';
-        echo '<p>' . esc_html__( 'Invítame un café y ayúdame a seguir manteniendo y mejorando este plugin. ¡Gracias!', 'role-manager' ) . '</p>';
+        echo '<p>' . esc_html__( 'Tu apoyo ayuda a mantener y mejorar este plugin. Puedes hacer una donación directa desde PayPal.', 'role-manager' ) . '</p>';
 
-        if ( $configured ) {
-            echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" class="rm-donate-form">';
-            wp_nonce_field( 'rm_donate' );
-            echo '<input type="hidden" name="action" value="rm_donate" />';
+        echo '<a href="' . esc_url( 'https://paypal.me/AndersonChila?locale.x=en_US&country.x=CO' ) . '" class="rm-donate-button" target="_blank" rel="noopener noreferrer">';
+        echo '<span class="rm-donate-button-coffee" aria-hidden="true">☕</span> ';
+        echo esc_html__( 'Donar con PayPal', 'role-manager' );
+        echo '</a>';
 
-            echo '<div class="rm-amounts">';
-            foreach ( self::PRESETS as $i => $preset ) {
-                printf(
-                    '<label class="rm-amount"><input type="radio" name="amount" value="%1$s"%2$s /><span>%3$s %1$s</span></label>',
-                    esc_attr( $preset ),
-                    checked( 1 === $i, true, false ),
-                    esc_html( $settings['currency'] )
-                );
-            }
-            echo '<label class="rm-amount rm-amount-custom">';
-            echo '<input type="radio" name="amount" value="" id="rm-amount-other" />';
-            echo '<span><input type="number" min="1" step="0.5" placeholder="' . esc_attr__( 'Otro', 'role-manager' ) . '" id="rm-amount-other-value" aria-label="' . esc_attr__( 'Otra cantidad', 'role-manager' ) . '" /></span>';
-            echo '</label>';
-            echo '</div>';
-
-            echo '<button type="submit" class="rm-donate-button">';
-            echo '<span class="rm-donate-button-coffee" aria-hidden="true">☕</span> ';
-            echo esc_html__( 'Donar con PayPal', 'role-manager' );
-            echo '</button>';
-
-            if ( 'sandbox' === $settings['mode'] ) {
-                echo '<p class="description">' . esc_html__( 'Modo sandbox activo: los pagos son de prueba.', 'role-manager' ) . '</p>';
-            }
-
-            echo '</form>';
-        } else {
-            echo '<p><em>' . esc_html__( 'Configura las credenciales de PayPal más abajo para activar las donaciones.', 'role-manager' ) . '</em></p>';
-        }
-
+        echo '<p class="rm-donate-link-note">' . esc_html__( 'Se abrirá PayPal en una nueva ventana.', 'role-manager' ) . '</p>';
         echo '</div>';
 
-        // --- Configuración de PayPal ---
-        $this->render_settings_form( $settings );
-
         echo '</div>';
-    }
-
-    private function render_settings_form( $settings ) {
-        echo '<h2>' . esc_html__( 'Configuración de PayPal', 'role-manager' ) . '</h2>';
-        echo '<p class="description">' . esc_html__( 'Crea una app REST en developer.paypal.com y pega aquí sus credenciales.', 'role-manager' ) . '</p>';
-
-        echo '<form method="post" action="' . esc_url( admin_url( 'admin-post.php' ) ) . '" class="rm-card">';
-        wp_nonce_field( 'rm_donation_settings' );
-        echo '<input type="hidden" name="action" value="rm_donation_settings" />';
-
-        echo '<table class="form-table" role="presentation"><tbody>';
-
-        echo '<tr><th scope="row"><label for="rm-pp-client-id">' . esc_html__( 'Client ID', 'role-manager' ) . '</label></th>';
-        echo '<td><input name="client_id" id="rm-pp-client-id" type="text" class="large-text" value="' . esc_attr( $settings['client_id'] ) . '" autocomplete="off" /></td></tr>';
-
-        echo '<tr><th scope="row"><label for="rm-pp-secret">' . esc_html__( 'Client Secret', 'role-manager' ) . '</label></th>';
-        echo '<td><input name="client_secret" id="rm-pp-secret" type="password" class="large-text" value="" autocomplete="new-password" placeholder="' . esc_attr( '' !== $settings['client_secret'] ? __( 'Guardado — escribe uno nuevo para cambiarlo', 'role-manager' ) : '' ) . '" /></td></tr>';
-
-        echo '<tr><th scope="row">' . esc_html__( 'Entorno', 'role-manager' ) . '</th><td>';
-        echo '<label><input type="radio" name="mode" value="sandbox"' . checked( $settings['mode'], 'sandbox', false ) . ' /> ' . esc_html__( 'Sandbox (pruebas)', 'role-manager' ) . '</label><br />';
-        echo '<label><input type="radio" name="mode" value="live"' . checked( $settings['mode'], 'live', false ) . ' /> ' . esc_html__( 'Live (pagos reales)', 'role-manager' ) . '</label>';
-        echo '</td></tr>';
-
-        echo '<tr><th scope="row"><label for="rm-pp-currency">' . esc_html__( 'Divisa (ISO 4217)', 'role-manager' ) . '</label></th>';
-        echo '<td><input name="currency" id="rm-pp-currency" type="text" class="small-text" maxlength="3" value="' . esc_attr( $settings['currency'] ) . '" /> <span class="description">USD, EUR, MXN…</span></td></tr>';
-
-        echo '</tbody></table>';
-
-        submit_button( __( 'Guardar configuración', 'role-manager' ) );
-        echo '</form>';
     }
 
     private function maybe_render_notice() {
