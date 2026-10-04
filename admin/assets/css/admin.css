@@ -1,0 +1,241 @@
+/* Role Manager - estilos del panel de administración */
+
+.rm-wrap .rm-card {
+    background: #fff;
+    border: 1px solid #c3c4c7;
+    border-radius: 4px;
+    padding: 16px 20px;
+    margin: 16px 0;
+    max-width: 100%;
+}
+
+/* --- Rejilla de capacidades (CRUD de roles) --- */
+.rm-caps-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 12px;
+}
+
+.rm-caps-group {
+    border: 1px solid #dcdcde;
+    border-radius: 4px;
+    padding: 8px 12px;
+}
+
+.rm-caps-group legend {
+    font-weight: 600;
+    padding: 0 4px;
+    color: #1d2327;
+}
+
+.rm-cap {
+    display: block;
+    padding: 2px 0;
+    font-size: 12px;
+    color: #50575e;
+}
+
+.rm-cap span {
+    font-family: Consolas, Monaco, monospace;
+}
+
+/* --- Tabla de permisos por página --- */
+.rm-permissions-table .rm-col-role {
+    text-align: center;
+    width: 90px;
+}
+
+.rm-permissions-table .rm-col-page {
+    width: 320px;
+}
+
+.rm-page-link {
+    font-size: 11px;
+    color: #646970;
+    text-decoration: none;
+}
+
+.rm-badge {
+    display: inline-block;
+    font-size: 11px;
+    line-height: 1.6;
+    padding: 0 8px;
+    border-radius: 10px;
+    font-weight: 600;
+}
+
+.rm-badge-public {
+    background: #edfaef;
+    color: #007017;
+}
+
+.rm-badge-restricted {
+    background: #fcf0f1;
+    color: #b32d2e;
+}
+
+/* --- Rejilla de roles por usuario --- */
+.rm-roles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 10px;
+    margin-bottom: 12px;
+}
+
+.rm-role-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid #dcdcde;
+    border-radius: 4px;
+    padding: 8px 12px;
+}
+
+.rm-role-item code {
+    margin-left: auto;
+    font-size: 11px;
+    color: #646970;
+}
+
+/* --- CRUD de usuarios / campos personalizados --- */
+.rm-required {
+    color: #b32d2e;
+}
+
+.rm-radio-option {
+    display: inline-block;
+    margin-right: 16px;
+    padding: 2px 0;
+}
+
+.rm-section-title {
+    margin: 8px 0 0;
+    padding-top: 8px;
+    border-top: 1px solid #dcdcde;
+}
+
+/* --- Donaciones: ☕ Invítame un café --- */
+.rm-donate-card {
+    max-width: 560px;
+    text-align: center;
+    padding: 32px 28px;
+    border-radius: 12px;
+    background: linear-gradient(180deg, #fffdf7 0%, #fff 100%);
+    border: 1px solid #f0e6d2;
+    box-shadow: 0 2px 10px rgba(120, 85, 20, 0.06);
+}
+
+.rm-donate-card h2 {
+    margin: 8px 0 4px;
+    font-size: 20px;
+}
+
+.rm-donate-card p {
+    color: #50575e;
+    font-size: 13px;
+}
+
+.rm-coffee-emoji {
+    font-size: 44px;
+    line-height: 1;
+    display: inline-block;
+    animation: rm-steam 2.4s ease-in-out infinite;
+}
+
+@keyframes rm-steam {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50%      { transform: translateY(-4px) rotate(-4deg); }
+}
+
+.rm-amounts {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin: 18px 0;
+}
+
+.rm-amount input[type='radio'] {
+    position: absolute;
+    opacity: 0;
+}
+
+.rm-amount span {
+    display: inline-block;
+    padding: 10px 18px;
+    border: 2px solid #e2d6bd;
+    border-radius: 24px;
+    font-weight: 600;
+    color: #6b5426;
+    background: #fff;
+    cursor: pointer;
+    transition: transform 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+}
+
+.rm-amount span:hover {
+    transform: translateY(-2px);
+    border-color: #c9a659;
+}
+
+.rm-amount input[type='radio']:checked + span {
+    border-color: #b08a3e;
+    background: #fbf3df;
+    color: #4d3c12;
+}
+
+.rm-amount-custom span {
+    padding: 6px 10px;
+}
+
+.rm-amount-custom input[type='number'] {
+    width: 76px;
+    border: none;
+    background: transparent;
+    font-weight: 600;
+    color: #6b5426;
+}
+
+.rm-amount-custom input[type='number']:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+.rm-donate-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 28px;
+    background: linear-gradient(135deg, #ffc439 0%, #f2ab27 100%);
+    color: #3b2b00;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    box-shadow: 0 3px 8px rgba(190, 140, 30, 0.35);
+}
+
+.rm-donate-button:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 6px 14px rgba(190, 140, 30, 0.45);
+}
+
+.rm-donate-button:active {
+    transform: translateY(0) scale(0.99);
+}
+
+.rm-donate-button-coffee {
+    display: inline-block;
+    transition: transform 0.2s ease;
+}
+
+.rm-donate-button:hover .rm-donate-button-coffee {
+    animation: rm-wiggle 0.5s ease-in-out;
+}
+
+@keyframes rm-wiggle {
+    0%, 100% { transform: rotate(0deg); }
+    25%      { transform: rotate(-12deg); }
+    75%      { transform: rotate(12deg); }
+}
