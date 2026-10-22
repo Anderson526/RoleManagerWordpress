@@ -1,5 +1,28 @@
 # Role Manager
 
+## Creador
+
+Desarrollado por Anderson Chila.
+
+Portafolio profesional: https://anderson526.github.io/portfolio-profesional/
+
+## Lenguaje y stack técnico
+
+- PHP 7.2+
+- WordPress 5.0+
+- Módulos de administración personalizados
+- Capabilities y roles de WordPress
+- jQuery y CSS para la interfaz del administrador
+- MySQL para almacenamiento de configuración y metadatos
+
+## Uso
+
+1. Instala el plugin en wp-content/plugins/.
+2. Actívalo desde WordPress.
+3. Accede al menú Role Manager en el panel administrativo.
+4. Administra roles, usuarios, permisos por página y campos personalizados.
+5. Personaliza accesos y estructura del sitio según el tipo de usuario.
+
 Plugin modular y escalable para la gestión de roles en WordPress. Agrupa seis
 funcionalidades, cada una en su propio submenú bajo el menú **Role Manager**:
 
@@ -137,3 +160,7 @@ define( 'ROLE_MANAGER_CAP', 'edit_users' );
 
 - WordPress 5.0+
 - PHP 7.2+
+
+## Agradecimiento
+
+Gracias a la comunidad de WordPress y a la comunidad de desarrolladores que crean herramientas para gestionarlos con orden y seguridad. Este proyecto busca simplificar la administración de usuarios y permisos sin perder control ni flexibilidad.
